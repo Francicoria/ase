@@ -55,6 +55,11 @@ jobs:
       shell: bash
       run: |
         cd build && ninja
+    - name: Upload
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: binaries
+        path: build/bin
     - name: Running C++ Tests
       shell: bash
       run: |
@@ -71,8 +76,3 @@ jobs:
         export ASEPRITE=$PWD/build/bin/aseprite
         cd tests
         $XVFB bash run-tests.sh
-    - name: Upload
-      uses: actions/upload-artifact@v3.1.1
-      with:
-        name: bin
-        path: $PWD/build/bin/
